@@ -1,8 +1,9 @@
 <?php
 
 $message = $_POST['message'];
+$avatar = 'https://pbs.twimg.com/profile_images/582300237932433408/Usv_0EQw_400x400.jpg'
 
-$arr = array('content' => $message);
+$arr = array('content' => $message, 'avatar_url' => $avatar);
 
 $json = json_encode($arr);
 
@@ -20,5 +21,8 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
 curl_exec($ch);
 curl_close($ch);
+
+header("location: index.php");
+exit;
 
 ?>
