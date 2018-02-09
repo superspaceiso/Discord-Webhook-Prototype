@@ -1,7 +1,7 @@
 <?php
 
 $message = $_POST['message'];
-$avatar = 'https://pbs.twimg.com/profile_images/582300237932433408/Usv_0EQw_400x400.jpg'
+$avatar = 'https://pbs.twimg.com/profile_images/582300237932433408/Usv_0EQw_400x400.jpg';
 
 $arr = array('content' => $message, 'avatar_url' => $avatar);
 
