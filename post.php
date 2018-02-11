@@ -5,12 +5,16 @@ $message = $_POST['message'];
 $avatar = null;
 
 //Embeds
-$authorname = 'Boop';
-$url = 'https://imgur.com';
-$icon_url = 'https://i.imgur.com/4M34hi2.png';
-$title = 'Test';
+$authorname = 'Test Author';
+$url = null;
+$icon_url = null;
+$title = null;
 $description = 'This is a test';
 $color = 8388863;
+$thumbnail_url = null;
+$image_url = null;
+$footer_text = 'Test Footer';
+$footer_icon_url = null;
 
 $message = [
   'content' => $message,
@@ -22,15 +26,25 @@ $message = [
         'url' => $url,
         'icon_url' => $icon_url,
       ],
-    'title' => $title,
-    'description' => $description,
-    'color' => $color
-]]
+  'title' => $title,
+  'description' => $description,
+  'color' => $color,
+      'thumbnail' => [
+        'url' => $thumbnail_url,
+      ],
+      'image' => [
+        'url' => $image_url,
+      ],
+      'footer' => [
+        'text' => $footer_text,
+        'icon_url' => $footer_icon_url
+      ]
+  ]]
 ];
 
 $encoded_message = json_encode($message, JSON_PRETTY_PRINT);
 
-//var_dump($encoded_message);
+var_dump($encoded_message);
 
 $webhook_url = 'https://discordapp.com/api/webhooks/274628909138575360/Im39Wt9hslEtdGwu_lMt3tUI39DeCmNhvlrnXeGM3v_nAnfUUSKzrMd32nt-JBmhqP5d';
 
@@ -47,7 +61,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 curl_exec($ch);
 curl_close($ch);
 
-header("location: index.php");
-exit;
+//header("location: index.php");
+//exit;
 
 ?>
