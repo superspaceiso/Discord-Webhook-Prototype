@@ -1,22 +1,47 @@
 <?php
 
+$username = null;
 $message = $_POST['message'];
-$avatar = 'https://pbs.twimg.com/profile_images/582300237932433408/Usv_0EQw_400x400.jpg';
+$avatar = null;
 
-$arr = array('content' => $message, 'avatar_url' => $avatar);
+//Embeds
+$authorname = 'Boop';
+$url = 'https://imgur.com';
+$icon_url = 'https://i.imgur.com/4M34hi2.png';
+$title = 'Test';
+$description = 'This is a test';
+$color = 8388863;
 
-$json = json_encode($arr);
+$message = [
+  'content' => $message,
+  'username' => $username,
+  'avatar_url' => $avatar,
+  'embeds' => [[
+      'author' => [
+        'name' => $authorname,
+        'url' => $url,
+        'icon_url' => $icon_url,
+      ],
+    'title' => $title,
+    'description' => $description,
+    'color' => $color
+]]
+];
 
-$url = 'https://discordapp.com/api/webhooks/274628909138575360/Im39Wt9hslEtdGwu_lMt3tUI39DeCmNhvlrnXeGM3v_nAnfUUSKzrMd32nt-JBmhqP5d';
+$encoded_message = json_encode($message, JSON_PRETTY_PRINT);
+
+//var_dump($encoded_message);
+
+$webhook_url = 'https://discordapp.com/api/webhooks/274628909138575360/Im39Wt9hslEtdGwu_lMt3tUI39DeCmNhvlrnXeGM3v_nAnfUUSKzrMd32nt-JBmhqP5d';
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_URL, $webhook_url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $encoded_message);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Content-Type: application/json',
-    'Content-Length: ' . strlen($json))
+    'Content-Length: ' . strlen($encoded_message))
 );
 
 curl_exec($ch);
