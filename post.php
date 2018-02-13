@@ -13,6 +13,9 @@ $description = 'This is a test';
 $color = 8388863;
 $thumbnail_url = null;
 $image_url = null;
+$field_name = 'Test Field';
+$field_value = 'BOOP';
+$field_inline = 'true';
 $footer_text = 'Test Footer';
 $footer_icon_url = null;
 
@@ -29,6 +32,17 @@ $message = [
   'title' => $title,
   'description' => $description,
   'color' => $color,
+      'fields' => [[
+        'name' => $field_name,
+        'value' => $field_value,
+        'inline' => $field_inline,
+      ],
+      [
+      'name' => $field_name,
+      'value' => $field_value,
+      'inline' => $field_inline,
+    ],
+    ],
       'thumbnail' => [
         'url' => $thumbnail_url,
       ],
@@ -44,7 +58,7 @@ $message = [
 
 $encoded_message = json_encode($message, JSON_PRETTY_PRINT);
 
-var_dump($encoded_message);
+//var_dump($encoded_message);
 
 $webhook_url = 'https://discordapp.com/api/webhooks/274628909138575360/Im39Wt9hslEtdGwu_lMt3tUI39DeCmNhvlrnXeGM3v_nAnfUUSKzrMd32nt-JBmhqP5d';
 
@@ -61,7 +75,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 curl_exec($ch);
 curl_close($ch);
 
-//header("location: index.php");
-//exit;
+header("location: index.php");
+exit;
 
 ?>
